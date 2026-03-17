@@ -1,0 +1,4 @@
+# データベースのデータ本体はGit管理から外す
+advance-laravel/docker/mysql/data/
+# または、もっと広範囲に
+**/mysql/data/
