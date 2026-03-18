@@ -14,9 +14,9 @@ class AuthorController extends Controller
         return view('index', ['authors' => $authors]);
     }
 
-    public function add() 
+    public function add()
     {
-        return view('add');        
+        return view('add');
     }
 
     public function create(AuthorRequest $request)
@@ -36,7 +36,6 @@ class AuthorController extends Controller
     {
         $form = $request->all();
         unset($form['_token']);
-        
         Author::find($request->id)->update($form);
         return redirect('/');
     }
@@ -79,5 +78,12 @@ class AuthorController extends Controller
     {
         return view('verror');
     }
-  
+    public function relate()
+    {
+        $hasItems = Author::has('book')->get();
+        $noItems = Author::doesntHave('book')->get();
+        $param = ['hasItems' => $hasItems, 'noItems' => $noItems];
+        return view('author.index',$param);
+    }
+
 }
