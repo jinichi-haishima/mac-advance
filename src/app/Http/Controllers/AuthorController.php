@@ -10,8 +10,8 @@ class AuthorController extends Controller
 {
     public function index()
     {
-        $authors = Author::all();
-        return view('index', ['authors' => $authors]);
+    $authors = Author::Paginate(4);
+    return view('index', ['authors' => $authors]);
     }
 
     public function add()
@@ -39,7 +39,7 @@ class AuthorController extends Controller
         Author::find($request->id)->update($form);
         return redirect('/');
     }
-    
+
     public function delete(Request $request)
     {
         $author = Author::find($request->id);
